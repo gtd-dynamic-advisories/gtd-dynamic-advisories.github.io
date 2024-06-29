@@ -3,8 +3,9 @@ from rest_framework import status
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
 from apps.core import utils
+from rest_framework_swagger.views import get_swagger_view
 
-class Persona(APIView):
+class PersonaView(APIView):
     def get(self,request, persona_id):
         response = utils.get_name(persona_id)
         status_code = status.HTTP_404_NOT_FOUND if not response else status.HTTP_200_OK
@@ -25,3 +26,6 @@ class ListPersona(APIView):
         response = utils.traer_personas(request)
         status_code = status.HTTP_404_NOT_FOUND if not response else status.HTTP_200_OK
         return Response(response, status_code)
+    
+
+schema_view = get_swagger_view(title='Pastebin API')

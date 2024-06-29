@@ -28,7 +28,5 @@ urlpatterns = [
     # auth
     path('', include('rest_framework.urls'), name='rest_framework'),
     # Apiviews
-    path('core/', include('api.core.urls')),
-    # swagger docs
-    path('docs/', schema_view.as_view())
+    path('', include('api.core.urls'))
 ]
