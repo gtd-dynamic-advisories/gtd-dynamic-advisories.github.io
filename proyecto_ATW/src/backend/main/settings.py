@@ -41,13 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.core',
+    'apps.gtd_dynamic_advisories',
     'api',
     'rest_framework.authtoken',
     'rest_auth',
     'rest_framework_swagger',
     'rest_framework',
-    'corsheaders', 
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -98,12 +98,17 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }
 
 # Djanjo REST Swagger settings
 
 SWAGGER_SETTINGS = {
+    'JSON_EDITOR': True,
     'exclude_namespaces': [],
     'api_version': '0.1',
     'api_path': '/characters/api',
@@ -111,7 +116,6 @@ SWAGGER_SETTINGS = {
         'get',
         'post',
         'put',
-        'patch',
         'delete'
     ],
     'api_key': '',
@@ -133,8 +137,6 @@ SWAGGER_SETTINGS = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'apps/core/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

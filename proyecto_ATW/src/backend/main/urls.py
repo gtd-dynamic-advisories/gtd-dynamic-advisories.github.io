@@ -21,6 +21,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('apps.core.urls')), # incluimos la ubicación de las url en la app core
+    path('', include('apps.gtd_dynamic_advisories.urls')), # incluimos la ubicación de las url en la app gtd_dynamic_advisories
     path('', include('api.urls')), #incluimos las urls que usaremos para las api
 ]

@@ -1,23 +1,9 @@
 from rest_framework import serializers
-from models import Pyme
-from models import Asesor
-from models import Pyme_Asesor
-
-
-
-
-# class PersonaSerializer(serializers.Serializer):
-#     id = serializers.IntegerField()
-#     nombre = serializers.CharField() 
-#     f_nacimiento=serializers.CharField()
-#     ciudad = serializers.CharField()
-#     avatar = serializers.FileField()
-#     class Meta:
-#         model = Persona 
+from apps.gtd_dynamic_advisories.models import Pyme, Asesor, Pyme_Asesor
 
 
 class PymeSerializer(serializers.Serializer):
-    id = serializers.IntergerField()
+    id = serializers.IntegerField()
     rut = serializers.CharField()
     direccion = serializers.CharField()
     telefono = serializers.CharField()
@@ -25,9 +11,10 @@ class PymeSerializer(serializers.Serializer):
     correo = serializers.EmailField()
     class Meta:
         model = Pyme
+        fields=("id", "rut", "direccion", "telefono", "nombre", "correo")
 
 class AsesorSerializer(serializers.Serializer):
-    id = serializers.IntergerField()
+    id = serializers.IntegerField()
     nombre = serializers.CharField()
     rut = serializers.CharField()
     telefono = serializers.CharField()
@@ -36,8 +23,8 @@ class AsesorSerializer(serializers.Serializer):
         model = Asesor
 
 class Pyme_AsesorSerializer(serializers.Serializer):
-    id_pyme = serializers.ForeignKey()
-    id_asesor = serializers.ForeignKey()
+    id_pyme = serializers.IntegerField()
+    id_asesor = serializers.IntegerField()
     fecha_contratacion = serializers.DateField()
     departamento = serializers.CharField()
     modalidad_contratacion = serializers.CharField()

@@ -8,7 +8,7 @@ MODALIDAD_CONTRATACION = (
 )
 
 class Pyme(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     rut = models.CharField(max_length=10)
     direccion = models.CharField(max_length=100)
     telefono = models.CharField(max_length=15)
@@ -19,7 +19,7 @@ class Pyme(models.Model):
         return "{} ({})".format(self.nombre, self.id)
 
 class Asesor(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     rut = models.CharField(max_length=10)
     telefono = models.CharField(max_length=15)

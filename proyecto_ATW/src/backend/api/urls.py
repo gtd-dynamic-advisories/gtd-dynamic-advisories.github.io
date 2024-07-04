@@ -28,5 +28,5 @@ urlpatterns = [
     # auth
     path('', include('rest_framework.urls'), name='rest_framework'),
     # Apiviews
-    path('', include('api.core.urls'))
+    path('', include('api.gtd_dynamic_advisories.urls'))
 ]

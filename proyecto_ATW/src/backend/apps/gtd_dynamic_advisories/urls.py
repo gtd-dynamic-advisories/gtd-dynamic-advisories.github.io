@@ -1,5 +1,5 @@
 from django.urls import path, include
-from apps.core import views
+from apps.gtd_dynamic_advisories import views
 
 urlpatterns = [
 ]
