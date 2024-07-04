@@ -3,7 +3,6 @@ from apps.gtd_dynamic_advisories.models import Pyme, Asesor, Pyme_Asesor
 
 
 class PymeSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
     rut = serializers.CharField()
     direccion = serializers.CharField()
     telefono = serializers.CharField()
@@ -11,16 +10,16 @@ class PymeSerializer(serializers.Serializer):
     correo = serializers.EmailField()
     class Meta:
         model = Pyme
-        fields=("id", "rut", "direccion", "telefono", "nombre", "correo")
+        fields=("rut", "direccion", "telefono", "nombre", "correo")
 
 class AsesorSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
     nombre = serializers.CharField()
     rut = serializers.CharField()
     telefono = serializers.CharField()
     correo = serializers.EmailField()
     class Meta:
         model = Asesor
+        fields = ("nombre", "rut", "telefono", "correo")
 
 class Pyme_AsesorSerializer(serializers.Serializer):
     id_pyme = serializers.IntegerField()
@@ -30,3 +29,4 @@ class Pyme_AsesorSerializer(serializers.Serializer):
     modalidad_contratacion = serializers.CharField()
     class Meta:
         model = Pyme_Asesor
+        fields = ("id_pyme", "id_asesor", "fecha_contratacion", "departamento", "modalidad_contratacion")

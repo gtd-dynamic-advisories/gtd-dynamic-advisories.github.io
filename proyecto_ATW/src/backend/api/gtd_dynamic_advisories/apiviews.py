@@ -10,7 +10,6 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
     
 class PymeViewSet(viewsets.ViewSet):
-    serializer_class = serializers.PymeSerializer
     def get(self, request, id):
         try:
             respose = utils.getPyme(id)
@@ -57,7 +56,6 @@ class PymeViewSet(viewsets.ViewSet):
         
         
 class AsesorViewSet(viewsets.ViewSet):
-    serializer_class = serializers.AsesorSerializer
     def get(self, request, id):
         try:
             respose = utils.getAsesor(id)
