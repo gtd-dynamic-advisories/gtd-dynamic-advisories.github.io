@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 })
 export class AppPersonasComponent {
 
-  displayedColumns = ['id', 'Rut', 'Direccion', 'Telefono','Nombre', 'Correo', 'avatar', 'edit'];
+  displayedColumns = ['id', 'Rut', 'Direccion', 'Telefono','Nombre', 'Correo', 'edit'];
   dataSource: any[];
 
   constructor(){

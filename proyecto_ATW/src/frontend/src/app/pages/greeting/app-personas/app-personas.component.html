@@ -6,7 +6,7 @@
   
       <!-- Position Column -->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
       </ng-container>
   
@@ -38,11 +38,6 @@
       <ng-container matColumnDef="Correo">
         <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.Correo}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="avatar">
-        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let element"> <a mat-raised-button href="{{element.avatar}}">Link</a></mat-cell>
       </ng-container>
       
       <ng-container matColumnDef="edit">

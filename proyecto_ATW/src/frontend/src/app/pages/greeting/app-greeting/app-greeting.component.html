@@ -1,12 +1,12 @@
 <div class="col-lg-12 col-sm-6">
   <mat-card class="cardWithShadow">
     <mat-card-content class="p-24">
-      <mat-card-title>Seleccione persona</mat-card-title>
+      <mat-card-title>Seleccione a un asesor</mat-card-title>
       <form class="row m-t-24" [formGroup]="peopleFormGroup" (submit)="getPerson()">
         
         <mat-form-field>
           <mat-select
-            placeholder="Seleccione persona"
+            placeholder="Seleccione Asesor"
             [formControl]="peopleFormGroup.controls.personControl"
             required
           >
@@ -16,10 +16,10 @@
             </mat-option>
           </mat-select>
           <mat-error *ngIf="peopleFormGroup.controls.personControl.hasError('required')"
-            >Por favor, seleccione una persona</mat-error
+            >Por favor, seleccione a uno de los asesores</mat-error
           >
         </mat-form-field>
-        <a mat-raised-button color="primary" [routerLink]="['people']">Administrar personas</a>
+        <a mat-raised-button color="primary" [routerLink]="['people']">Administrar personal</a>
         <div class="col-12">
           <button mat-raised-button color="primary" type="submit" [disabled]="!peopleFormGroup.valid">Enviar</button>
         </div>
