@@ -1,6 +1,6 @@
 from tokenize import Token 
 from rest_framework import status, viewsets
-from rest_framework.views import APIView 
+from rest_framework.parsers import JSONParser 
 from rest_framework.response import Response 
 from apps.gtd_dynamic_advisories import utils, serializers
 from rest_framework import permissions
@@ -10,9 +10,9 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
     
 class PymeViewSet(viewsets.ViewSet):
-    def get(self, request, id):
+    def get(self, request, pyme_id):
         try:
-            respose = utils.getPyme(id)
+            respose = utils.getPyme(pyme_id)
             status_code = status.HTTP_404_NOT_FOUND if not respose else status.HTTP_200_OK
             return Response(respose, status_code)
         
@@ -29,17 +29,17 @@ class PymeViewSet(viewsets.ViewSet):
             return Response(e, status.HTTP_400_BAD_REQUEST)
     
     @swagger_auto_schema(request_body=serializers.PymeSerializer)
-    def put(self, request, id):
+    def put(self, request, pyme_id):
         try:
-            response = utils.updatePyme(id, request.data)
+            response = utils.updatePyme(pyme_id, request.data)
             return Response(response, status.HTTP_200_OK)
         
         except Exception as e:
             return Response(e, status.HTTP_404_NOT_FOUND)
         
-    def delete(self, request, id):
+    def delete(self, request, pyme_id):
         try:
-            utils.deletePyme(id)
+            utils.deletePyme(pyme_id)
             return Response(status.HTTP_200_OK)
         
         except Exception as e:
@@ -47,7 +47,6 @@ class PymeViewSet(viewsets.ViewSet):
         
     def getAll(self, request):
         try:
-            breakpoint()
             response = utils.getAllPymes(request=request)
             return Response(response, status.HTTP_200_OK)
         
@@ -56,9 +55,9 @@ class PymeViewSet(viewsets.ViewSet):
         
         
 class AsesorViewSet(viewsets.ViewSet):
-    def get(self, request, id):
+    def get(self, request, asesor_id):
         try:
-            respose = utils.getAsesor(id)
+            respose = utils.getAsesor(asesor_id)
             status_code = status.HTTP_404_NOT_FOUND if not respose else status.HTTP_200_OK
             return Response(respose, status_code)
         
@@ -66,7 +65,7 @@ class AsesorViewSet(viewsets.ViewSet):
             return Response(e, status.HTTP_404_NOT_FOUND)
         
     @swagger_auto_schema(request_body=serializers.AsesorSerializer)
-    def post(self, request, id):
+    def post(self, request):
         try:
             response = utils.createAsesor(request.data)
             return Response(response, status.HTTP_200_OK)
@@ -75,17 +74,17 @@ class AsesorViewSet(viewsets.ViewSet):
             return Response(e, status.HTTP_400_BAD_REQUEST)
     
     @swagger_auto_schema(request_body=serializers.AsesorSerializer)
-    def put(self, request, id):
+    def put(self, request, asesor_id):
         try:
-            response = utils.updateAsesor(id, request.data)
+            response = utils.updateAsesor(asesor_id, request.data)
             return Response(response, status.HTTP_200_OK)
         
         except Exception as e:
             return Response(e, status.HTTP_404_NOT_FOUND)
         
-    def delete(self, request, id):
+    def delete(self, request, asesor_id):
         try:
-            utils.deleteAsesor(id)
+            utils.deleteAsesor(asesor_id)
             return Response(status.HTTP_200_OK)
         
         except Exception as e:
@@ -101,9 +100,9 @@ class AsesorViewSet(viewsets.ViewSet):
         
 
 class Pyme_AsesorViewSet(viewsets.ViewSet):
-    def get(self, request, id):
+    def get(self, request, pyme_asesor_id):
         try:
-            respose = utils.getPyme_Asesor(id)
+            respose = utils.getPyme_Asesor(pyme_asesor_id)
             status_code = status.HTTP_404_NOT_FOUND if not respose else status.HTTP_200_OK
             return Response(respose, status_code)
         
@@ -111,7 +110,7 @@ class Pyme_AsesorViewSet(viewsets.ViewSet):
             return Response(e, status.HTTP_404_NOT_FOUND)
         
     @swagger_auto_schema(request_body=serializers.Pyme_AsesorSerializer)
-    def post(self, request, id):
+    def post(self, request):
         try:
             response = utils.createPyme_Asesor(request.data)
             return Response(response, status.HTTP_200_OK)
@@ -120,21 +119,21 @@ class Pyme_AsesorViewSet(viewsets.ViewSet):
             return Response(e, status.HTTP_400_BAD_REQUEST)
         
     @swagger_auto_schema(request_body=serializers.Pyme_AsesorSerializer)
-    def put(self, request, id):
+    def put(self, request, pyme_asesor_id):
         try:
-            response = utils.updatePyme_Asesor(id, request.data)
+            response = utils.updatePyme_Asesor(pyme_asesor_id, request.data)
             return Response(response, status.HTTP_200_OK)
         
         except Exception as e:
             return Response(e, status.HTTP_404_NOT_FOUND)
         
-    def delete(self, request, id):
+    def delete(self, request, pyme_asesor_id):
         try:
-            utils.deletePyme_Asesor(id)
+            utils.deletePyme_Asesor(pyme_asesor_id)
             return Response(status.HTTP_200_OK)
         
         except Exception as e:
-            return Response(e, status.HTTP_404_NOT_FOURD)
+            return Response(e, status.HTTP_404_NOT_FOUND)
         
     def getAll(self, request):
         try:

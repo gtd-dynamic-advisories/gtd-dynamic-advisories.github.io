@@ -58,86 +58,104 @@ def getAllPyme_Asesors(request):
 
 
 ### Create ###
-def createPyme(*args, **kwargs):
+def createPyme(args, **kwargs):
     p = Pyme.objects.create()
-    p.rut = kwargs.get('rut') if 'rut' in kwargs else None
-    p.direccion = kwargs.get('direccion') if 'direccion' in kwargs else None
-    p.telefono = kwargs.get('telefono') if 'telefono' in kwargs else None
-    p.nombre = kwargs.get('nombre') if 'nombre' in kwargs else None
-    p.correo = kwargs.get('correo') if 'correo' in kwargs else None
+    p.rut = args.get('rut') if 'rut' in args else None
+    p.direccion = args.get('direccion') if 'direccion' in args else None
+    p.telefono = args.get('telefono') if 'telefono' in args else None
+    p.nombre = args.get('nombre') if 'nombre' in args else None
+    p.correo = args.get('correo') if 'correo' in args else None
     p.save()
     return PymeSerializer(p).data
 
 
-def createAsesor(*args, **kwargs):
+def createAsesor(args, **kwargs):
     a = Asesor.objects.create()
-    a.nombre = kwargs.get('nombre') if 'nombre' in kwargs else None 
-    a.rut = kwargs.get('rut') if 'rut' in kwargs else None 
-    a.telefono = kwargs.get('telefono') if 'telefono' in kwargs else None 
-    a.correo = kwargs.get('correo') if 'correo' in kwargs else None
+    a.nombre = args.get('nombre') if 'nombre' in args else None 
+    a.rut = args.get('rut') if 'rut' in args else None 
+    a.telefono = args.get('telefono') if 'telefono' in args else None 
+    a.correo = args.get('correo') if 'correo' in args else None
+    print("Asesor {}: {}, {}, {}, {}".format(a, a.id, a.nombre, a.rut, a.telefono, a.correo))
     a.save()
     return AsesorSerializer(a).data
 
 
-def createPyme_Asesor(*args, **kwargs):
-    if 'id_pyme' not in kwargs or kwargs.get('id_pyme') == "":
+def createPyme_Asesor(args, **kwargs):
+    if 'id_pyme' not in args or args.get('id_pyme') == "":
         raise Http404
     
-    if 'id_asesor' not in kwargs or kwargs. get('id_asesor0') == "":
+    if 'id_asesor' not in args or args. get('id_asesor') == "":
         raise Http404
     
-    id_pyme = int(kwargs.get('id_pyme'))
-    id_asesor = int(kwargs['id_asesor'])
+    id_pyme = int(args.get('id_pyme'))
+    p = Pyme.objects.get(id = id_pyme)
+    
+    id_asesor = int(args.get('id_asesor'))
+    a = Asesor.objects.get(id = id_asesor)
 
-    pa = Pyme_Asesor.objects.create(id_pyme = id_pyme, id_asesor= id_asesor)
-    pa.fecha_contratacion = datetime.strptime(kwargs['fecha_contratacion']
-        ) if 'fecha_contratacion' in kwargs and kwargs[
-            'fecha_contratacion'] != "" else None 
-    pa.departamento = kwargs['departamento'] if 'departamento' in kwargs else None
-    pa.modalidad_contratacion = kwargs['modalidad_contratacion'] if 'modalidad_contratacion' in kwargs else None
+    breakpoint()
+    pa = Pyme_Asesor.objects.create(id_pyme = p, id_asesor= a)
+    pa.fecha_contratacion = datetime.strptime(args.get('fecha_contratacion')
+        ) if 'fecha_contratacion' in args and args.get(
+            'fecha_contratacion') != "" else None 
+    pa.departamento = args.get('departamento') if 'departamento' in args else None
+    pa.modalidad_contratacion = args.get('modalidad_contratacion') if 'modalidad_contratacion' in args else None
     pa.save()
     return Pyme_AsesorSerializer(pa).data
 
 
 ### Update ###
-def updatePyme(*args, **kwargs):
-    if 'id' not in kwargs or type(kwargs.get('id')) != int:
+def updatePyme(id_pyme, args, **kwargs):
+    if id_pyme is None:
         raise Http404
     
-    id_pyme = int(kwargs.get('id'))
+    try:
+        id_pyme = int(id_pyme)
+    except Exception as e:
+        raise Http404
+    
     p = Pyme.objects.get(id = id_pyme)
-    p.rut = kwargs.get('rut') if 'rut' in kwargs else None
-    p.direccion = kwargs.get('direccion') if 'direccion' in kwargs else None
-    p.telefono = kwargs.get('telefono') if 'telefono' in kwargs else None
-    p.nombre = kwargs.get('nombre') if 'nombre' in kwargs else None
-    p.correo = kwargs.get('correo') if 'correo' in kwargs else None
+    p.rut = args.get('rut') if 'rut' in args else None
+    p.direccion = args.get('direccion') if 'direccion' in args else None
+    p.telefono = args.get('telefono') if 'telefono' in args else None
+    p.nombre = args.get('nombre') if 'nombre' in args else None
+    p.correo = args.get('correo') if 'correo' in args else None
     p.save()
     return PymeSerializer(p).data
 
-def updateAsesor(*args, **kwargs):
-    if 'id' not in kwargs or type(kwargs.get('id')) != int:
+def updateAsesor(id_asesor, args, **kwargs):
+    if id_asesor is None:
         raise Http404
     
-    id_asesor = int(kwargs.get('id'))
+    try:
+        id_asesor = int(id_asesor)
+    except Exception as e:
+        raise Http404
+    
     a = Asesor.objects.get(id = id_asesor)
-    a.nombre = kwargs.get('nombre') if 'nombre' in kwargs else None 
-    a.rut = kwargs.get('rut') if 'rut' in kwargs else None 
-    a.telefono = kwargs.get('telefono') if 'telefono' in kwargs else None 
-    a.correo = kwargs.get('correo') if 'correo' in kwargs else None
+    a.nombre = args.get('nombre') if 'nombre' in args else None 
+    a.rut = args.get('rut') if 'rut' in args else None 
+    a.telefono = args.get('telefono') if 'telefono' in args else None 
+    a.correo = args.get('correo') if 'correo' in args else None
     a.save()
     return AsesorSerializer(a).data
 
-def updatePyme_Asesor(*args, **kwargs):
-    if 'id' not in kwargs or type(kwargs.get('id')) != int:
+def updatePyme_Asesor(pyme_asesor_id, args, **kwargs):
+    if pyme_asesor_id is None:
         raise Http404
     
-    id_pyme_asesor = int(kwargs.get('id'))
+    try:
+        pyme_asesor_id = int(pyme_asesor_id)
+    except Exception as e:
+        raise Http404
+    
+    id_pyme_asesor = int(args.get('id'))
     pa = Pyme_Asesor.objects.get(id = id_pyme_asesor)
-    pa.fecha_contratacion = datetime.strptime(kwargs['fecha_contratacion']
-        ) if 'fecha_contratacion' in kwargs and kwargs[
-            'fecha_contratacion'] != "" else None 
-    pa.departamento = kwargs['departamento'] if 'departamento' in kwargs else None
-    pa.modalidad_contratacion = kwargs['modalidad_contratacion'] if 'modalidad_contratacion' in kwargs else None
+    pa.fecha_contratacion = datetime.strptime(args.get('fecha_contratacion')
+        ) if 'fecha_contratacion' in args and args.get(
+            'fecha_contratacion') != "" else None 
+    pa.departamento = args.get('departamento') if 'departamento' in args else None
+    pa.modalidad_contratacion = args.get('modalidad_contratacion') if 'modalidad_contratacion' in args else None
     pa.save()
     return Pyme_AsesorSerializer(pa).data
 

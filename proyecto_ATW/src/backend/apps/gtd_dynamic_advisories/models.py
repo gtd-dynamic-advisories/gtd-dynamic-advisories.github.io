@@ -32,6 +32,6 @@ class Asesor(models.Model):
 class Pyme_Asesor(models.Model):
     id_pyme = models.ForeignKey(Pyme, on_delete=models.CASCADE)
     id_asesor = models.ForeignKey(Asesor, on_delete=models.CASCADE)
-    fecha_contratacion = models.DateField()
+    fecha_contratacion = models.DateField(null=True)
     departamento = models.CharField(max_length=20)
     modalidad_contratacion = models.CharField(max_length=10, choices=MODALIDAD_CONTRATACION, default="PRESENCIAL")
