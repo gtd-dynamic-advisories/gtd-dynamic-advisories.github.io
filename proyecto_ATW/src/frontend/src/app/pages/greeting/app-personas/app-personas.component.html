@@ -11,27 +11,33 @@
       </ng-container>
   
       <!-- Name Column -->
-      <ng-container matColumnDef="nombre">
+      <ng-container matColumnDef="Rut">
         <mat-header-cell *matHeaderCellDef>Rut </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.Rut}} </mat-cell>
       </ng-container>
   
       <!-- Weight Column -->
-      <ng-container matColumnDef="f_nacimiento">
+      <ng-container matColumnDef="Direccion">
         <mat-header-cell *matHeaderCellDef> Direccion </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.f_nacimiento}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.Direccion}} </mat-cell>
       </ng-container>
   
       <!-- Symbol Column -->
       <ng-container matColumnDef="Telefono">
         <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ciudad}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.Telefono}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Nombre}} </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="Correo">
         <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.ciudad}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.Correo}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="avatar">
