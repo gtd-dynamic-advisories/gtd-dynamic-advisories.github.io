@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-app-personas',
-  templateUrl: './app-personas.component.html',
-  styleUrl: './app-personas.component.scss'
+  selector: 'app-app-asesor',
+  templateUrl: './app-asesor.component.html',
+  styleUrl: './app-asesor.component.scss'
 })
-export class AppPersonasComponent {
+export class AppAsesorComponent {
 
-  displayedColumns = ['id', 'Rut', 'Direccion', 'Telefono','Nombre', 'Correo', 'edit'];
+  displayedColumns = ['id', 'Rut', 'Nombre', 'Telefono','Correo', 'edit'];
   dataSource: any[];
 
   constructor(){
