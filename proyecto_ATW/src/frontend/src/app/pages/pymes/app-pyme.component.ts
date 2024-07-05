@@ -1,5 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import {MatButtonModule} from "@angular/material/button"
+import {MatIconModule} from "@angular/material/icon"
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,30 +11,31 @@ import Swal from 'sweetalert2';
   styleUrl: './app-pyme.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule],
 })
 export class AppPymeComponent {
 
-  displayedColumns = ['id', 'Rut', 'Direccion', 'departamento','Telefono','Nombre','Correo', 'edit'];
+  displayedColumns = ['id', 'rut', 'direccion','telefono','nombre','correo', 'edit'];
   dataSource: any[];
 
   constructor(){
     this.dataSource = [];
-    this.getPeople();
+    this.getPyme();
   }
 
-  async getPeople(){
-    const result = await fetch('http://localhost:8000/api/core/get/list/Persona/');
+  async getPyme(){
+    const result = await fetch('http://127.0.0.1:8000/Pymes/');
 
     const response = (await result.json()) as any[];
     this.dataSource = response;
+    console.warn(this.dataSource)
   }
 
 
-  deletePerson(person: any){
+  deletePyme(pyme: any){
     Swal.fire({
       title: '¡Precaución!',
-      text: `¿Está seguro que desea eliminar a ${person.nombre}`,
+      text: `¿Está seguro que desea eliminar a ${pyme.nombre}`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí',
@@ -40,20 +44,20 @@ export class AppPymeComponent {
     }).then(async (result) => {
       if (result.value) {
 
-        const response = await fetch(`http://localhost:8000/api/core/delete/Persona/${person.id}/`,{
-          method: 'DELETE',
-        });
-
+        const response = await fetch(`http://127.0.0.1:8000/Pymes/${pyme.id}/`,
+          {
+            method: 'DELETE',
+          });
 
     
         if(response.status >= 200 && response.status <= 205){
           Swal.fire({
             title: "Eliminado",
-            text: `${person.nombre} se a eliminado de los registros`,
+            text: `${pyme.nombre} se a eliminado de los registros`,
             icon: 'success'
           }).then((ok)=>{
             if(ok.value){
-              this.getPeople();
+              this.getPyme();
             }
 
           });
@@ -61,7 +65,7 @@ export class AppPymeComponent {
         else{
           Swal.fire({
             title: "Error",
-            text: `No se pudo eliminar a ${person.nombre}`,
+            text: `No se pudo eliminar a ${pyme.nombre}`,
             icon: 'error'
           });
     
@@ -69,6 +73,10 @@ export class AppPymeComponent {
       } 
     });      
     
+  }
+  editPyme(pyme: any){
+  
+    console.error("Method not implemented")
   }
 }
 

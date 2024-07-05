@@ -1,56 +1,57 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
   
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-  
-      <!-- Position Column -->
+      <!-- id Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
       </ng-container>
   
-      <!-- Name Column -->
-      <ng-container matColumnDef="Rut">
+      <!-- rut Column -->
+      <ng-container matColumnDef="rut">
         <mat-header-cell *matHeaderCellDef>Rut </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Rut}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.rut}} </mat-cell>
       </ng-container>
   
-      <!-- Weight Column -->
-      <ng-container matColumnDef="Direccion">
+      <!-- direccion Column -->
+      <ng-container matColumnDef="direccion">
         <mat-header-cell *matHeaderCellDef> Direccion </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Direccion}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.direccion}} </mat-cell>
       </ng-container>
   
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="Telefono">
+      <!-- telefono Column -->
+      <ng-container matColumnDef="telefono">
         <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Telefono}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.telefono}} </mat-cell>
       </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="Nombre">
+      <!-- nombre Column -->
+      <ng-container matColumnDef="nombre">
         <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Nombre}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
       </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="Correo">
+      <!-- correo Column -->
+      <ng-container matColumnDef="correo">
         <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.Correo}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.correo}} </mat-cell>
       </ng-container>
-      
+       <!-- Opciones Column -->
       <ng-container matColumnDef="edit">
         <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
-            <button color="warn" mat-raised-button>Editar</button>
+          <button mat-fab color="error"
+          (click)=" editPyme(element.id)">
+            <mat-icon aria-label="Delete icon" fontIcon="edit">edit</mat-icon>
+          </button>
             
-            <button color="accent" 
-                mat-raised-button 
-                (click)="deletePerson(element)"
-
-                >Eliminar</button>
+            <button mat-fab color="error"
+            (click)="deletePyme(element)">
+                <mat-icon aria-label="Delete icon" fontIcon="delete">delete</mat-icon>
+            </button>
         </mat-cell>
+
       </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
