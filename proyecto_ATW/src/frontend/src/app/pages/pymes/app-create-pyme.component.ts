@@ -14,7 +14,7 @@ import { MatInputModule } from "@angular/material/input";
     standalone: true
 })
 export class AppCreatePymeComponent{
-    readonly BUTTON_NAME = "Crear Trabajdor";
+    readonly BUTTON_NAME = "Añadir Trabajdor";
     nombre: string;
     rut: string;
     direccion: string;

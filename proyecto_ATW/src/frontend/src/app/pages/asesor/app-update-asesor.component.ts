@@ -14,6 +14,7 @@ import { ActivatedRoute } from "@angular/router";
     standalone: true
 })
 export class AppUpdateAsesor{
+    readonly BUTTON_NAME = "Actualizar Asesor";
     id: number = -1;
     nombre: string = "";
     rut: string = "";

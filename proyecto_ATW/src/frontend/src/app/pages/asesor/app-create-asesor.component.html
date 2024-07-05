@@ -2,7 +2,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Nombre</mat-label>
       <input matInput placeholder="Nombre del Asesor" #nombre (change)="updateNombre($event)">
-      <mat-hint>p.e. Matías Sepúlveda</mat-hint>
+      <mat-hint>p.e. Matías Fernandez</mat-hint>
     </mat-form-field>
   </p>
 
@@ -31,4 +31,5 @@
     </mat-form-field>
   </p>
 
-  <button (click)="this.createAsesor()">Enviar</button>
+  <p></p>
+  <button (click)="this.createAsesor()"> {{ this.BUTTON_NAME }}</button>

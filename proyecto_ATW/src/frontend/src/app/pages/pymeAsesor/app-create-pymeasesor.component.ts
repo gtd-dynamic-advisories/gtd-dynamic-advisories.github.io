@@ -14,6 +14,7 @@ import { MatInputModule } from "@angular/material/input";
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppCreatePymeAsesorComponent{
+    readonly BUTTON_NAME = "Añadir Pyme";
     pyme: number;
     asesor: number;
     fecha_contratacion: string;

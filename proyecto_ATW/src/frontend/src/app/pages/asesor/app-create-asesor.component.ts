@@ -14,6 +14,7 @@ import { MatInputModule } from "@angular/material/input";
     standalone: true
 })
 export class AppCreateAsesorComponent{
+    readonly BUTTON_NAME = "Añadir Asesor";
     nombre: string;
     rut: string;
     telefono: string;

@@ -14,6 +14,7 @@ import { ActivatedRoute } from "@angular/router";
     standalone: true,
 })
 export class AppUpdatePymeAsesorComponent{
+    readonly BUTTON_NAME = "Actualizar Pyme";
     id: number = -1;
     id_pyme: number = -1;
     id_asesor: number = -1;
