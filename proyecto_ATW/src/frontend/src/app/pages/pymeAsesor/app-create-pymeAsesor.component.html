@@ -1,0 +1,41 @@
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>id Pyme</mat-label>
+      <input matInput placeholder="id_Pyme" #pyme (change)="updatePyme($event)">
+      <mat-hint>p.e.000001</mat-hint>
+    </mat-form-field>
+  </p>
+
+
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>Asesor</mat-label>
+      <input matInput placeholder="id_asesor" #asesor (change)="updateAsesor($event)">
+      <mat-hint>p.e. 000001</mat-hint>
+    </mat-form-field>
+  </p>
+
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de contratacion</mat-label>
+      <input matInput placeholder="fecha_Contratacion" #fechaContratacion (change)="updateFechaContratacion($event)">
+      <mat-hint>p.e. dd/mm/aaaa</mat-hint>
+    </mat-form-field>
+  </p>
+
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>Departamento</mat-label>
+      <input matInput placeholder="departamento" #departamento (change)="updateDepartamento($event)">
+      <mat-hint>{{ 'p.e. negocios' }}</mat-hint>
+    </mat-form-field>
+  </p>
+<p>
+    <mat-form-field appearance="fill">
+      <mat-label>Modalidad de contratacion</mat-label>
+      <input matInput placeholder="m_contratacion" #modalidadContratacion (change)="updateModalidadContratacion($event)">
+      <mat-hint>{{ 'p.e. online, presencial, telefono' }}</mat-hint>
+    </mat-form-field>
+  </p>
+
+  <button (click)="this.createPymeAsesor()">AAA</button>
