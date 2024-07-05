@@ -6,6 +6,7 @@ import { AppAsesorComponent } from './pages/asesor/app-asesor.component';
 import { AppPymeComponent } from './pages/pymes/app-pyme.component';
 import { ApppymeAsesorComponent } from './pages/pymeAsesor/app-pymeAsesor.component';
 import { AppCreateAsesorComponent } from './pages/asesor/app-create-asesor.component';
+import { AppUpdateAsesor } from './pages/asesor/app-update-asesor.component';
 
 const routes: Routes = [
   {
@@ -33,10 +34,10 @@ const routes: Routes = [
         path: 'Asesors/new',
         component: AppCreateAsesorComponent
       },
-      // {
-      //   path: 'Asesors/:id',
-      //   component:
-      // }
+      {
+        path: 'Asesors/:id',
+        component: AppUpdateAsesor
+      }
     ],
   },
 ];

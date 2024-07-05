@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, ElementRef, inject, ViewChild } from "@angular/core";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { ActivatedRoute } from "@angular/router";
@@ -15,11 +15,17 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class AppUpdateAsesor{
     id: number = -1;
-    nombre: string;
-    rut: string;
-    telefono: string;
-    correo: string;
+    nombre: string = "";
+    rut: string = "";
+    telefono: string = "";
+    correo: string = "";
+    
     private activatedRoute = inject(ActivatedRoute);
+
+    @ViewChild('nombre') nombreInput!: ElementRef;
+    @ViewChild('rut') rutInput!: ElementRef;
+    @ViewChild('telefono') telefonoInput!: ElementRef;
+    @ViewChild('correo') correoInput!: ElementRef;
 
     constructor(){
         const snapshot = this.activatedRoute.snapshot;
@@ -28,19 +34,68 @@ export class AppUpdateAsesor{
             
         }
         this.id = snapshot.params["id"];
-        fetch(`http://127.0.0.1:8000/Pyme_Asesors/${this.id}}`)
+        fetch(`http://127.0.0.1:8000/Asesors/${this.id}`,
+            {
+                method:"GET"
+            }
+        )
         .then((response) => {
-            const data = response.json()
+            console.warn("AAAAAAA", response);
+            
+            response.json()
                 .then((d) => {
                     console.warn("EEEEEEEEEE", d);
-                    
                     this.nombre = d['nombre'];
                     this.rut = d['rut'];
                     this.telefono = d['telefono'];
                     this.correo = d['correo'];
+
+                    this.bulkFields();
                 });
 
         }).catch((e) => console.error(e));
         
+    }
+
+    bulkFields(){
+        this.nombreInput.nativeElement.value = this.nombre;
+        this.rutInput.nativeElement.value = this.rut
+        this.telefonoInput.nativeElement.value = this.telefono
+        this.correoInput.nativeElement.value = this.correo
+        
+    }
+
+    updateNombre(event: any){
+        this.nombre = event.target.value
+    }
+
+    updateRut(event: any){
+        this.rut = event.target.value
+    }
+    updateTelefono(event: any){
+        this.telefono = event.target.value
+    }
+    updateCorreo(event: any){
+        this.correo = event.target.value
+    }
+
+    async createAsesor(){
+        let data  = {
+            nombre: this.nombre,
+            rut: this.rut,
+            telefono: this.telefono,
+            correo: this.correo 
+        }
+        
+
+        let response = await fetch(`http://127.0.0.1:8000/Asesors/${this.id}/`,
+            {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+        );
     }
 }

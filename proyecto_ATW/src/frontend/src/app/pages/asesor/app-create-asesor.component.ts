@@ -63,10 +63,4 @@ export class AppCreateAsesorComponent{
             console.log("TAWENO");  
         }
     }
-
-
-    logs(){
-        console.log(this.nombre, this.rut, this.telefono, this.correo);
-    }
-
 }
