@@ -27,7 +27,6 @@ export class AppPymeComponent {
 
     const response = (await result.json()) as any[];
     this.dataSource = response;
-    console.warn(this.dataSource)
   }
 
 

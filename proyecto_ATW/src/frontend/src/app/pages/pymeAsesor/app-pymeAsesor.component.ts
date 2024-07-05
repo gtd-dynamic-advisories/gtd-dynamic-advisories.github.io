@@ -28,7 +28,6 @@ export class ApppymeAsesorComponent {
 
     const response = (await result.json()) as any[];
     this.dataSource = response;
-    console.warn(this.dataSource)
   }
 
 

@@ -1,7 +1,7 @@
 <p>
     <mat-form-field appearance="fill">
       <mat-label>Nombre</mat-label>
-      <input matInput placeholder="Nombre del Asesor" (change)="updateNombre($event)">
+      <input matInput placeholder="Nombre del Asesor" #nombre (change)="updateNombre($event)">
       <mat-hint>p.e. Matías Sepúlveda</mat-hint>
     </mat-form-field>
   </p>
@@ -10,7 +10,7 @@
 <p>
     <mat-form-field appearance="fill">
       <mat-label>RUT</mat-label>
-      <input matInput placeholder="RUT del Asesor" (change)="updateRut($event)">
+      <input matInput placeholder="RUT del Asesor" #rut (change)="updateRut($event)">
       <mat-hint>p.e. 111222333-0</mat-hint>
     </mat-form-field>
   </p>
@@ -18,7 +18,7 @@
 <p>
     <mat-form-field appearance="fill">
       <mat-label>Teléfono</mat-label>
-      <input matInput placeholder="Teléfono del Asesor" type="tel" (change)="updateTelefono($event)">
+      <input matInput placeholder="Teléfono del Asesor" #telefono type="tel" (change)="updateTelefono($event)">
       <mat-hint>p.e. +56 987 654 321</mat-hint>
     </mat-form-field>
   </p>
@@ -26,7 +26,7 @@
 <p>
     <mat-form-field appearance="fill">
       <mat-label>Correo</mat-label>
-      <input matInput placeholder="Correo del Asesor" type="email" (change)="updateCorreo($event)">
+      <input matInput placeholder="Correo del Asesor" #correo type="email" (change)="updateCorreo($event)">
       <mat-hint>{{ 'p.e. usuario@ejemplo.com' }}</mat-hint>
     </mat-form-field>
   </p>
