@@ -29,6 +29,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/greeting/greeting.module').then((m) => m.GreetingModule),
       },
+      {
+        path: 'asesor',
+        loadChildren: () =>
+          import('./pages/asesor/app-asesor.component').then((m) => m.AppAsesorComponent)
+      }
     ]
   },
 ];
