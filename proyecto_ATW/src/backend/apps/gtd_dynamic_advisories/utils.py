@@ -1,7 +1,7 @@
 from apps.gtd_dynamic_advisories.models import Pyme, Asesor, Pyme_Asesor
 from apps.gtd_dynamic_advisories.serializers import PymeSerializer, AsesorSerializer, Pyme_AsesorSerializer
 from django.http import Http404
-import datetime
+from datetime import datetime
 
 ### Read ###
 def getPyme(id = None):
@@ -93,10 +93,9 @@ def createPyme_Asesor(args, **kwargs):
     id_asesor = int(args.get('id_asesor'))
     a = Asesor.objects.get(id = id_asesor)
 
-    breakpoint()
     pa = Pyme_Asesor.objects.create(id_pyme = p, id_asesor= a)
-    pa.fecha_contratacion = datetime.strptime(args.get('fecha_contratacion')
-        ) if 'fecha_contratacion' in args and args.get(
+    pa.fecha_contratacion = datetime.strptime(args.get('fecha_contratacion'), "%Y-%m-%d"
+        ).date() if 'fecha_contratacion' in args and args.get(
             'fecha_contratacion') != "" else None 
     pa.departamento = args.get('departamento') if 'departamento' in args else None
     pa.modalidad_contratacion = args.get('modalidad_contratacion') if 'modalidad_contratacion' in args else None
@@ -148,11 +147,18 @@ def updatePyme_Asesor(pyme_asesor_id, args, **kwargs):
         pyme_asesor_id = int(pyme_asesor_id)
     except Exception as e:
         raise Http404
-    
-    id_pyme_asesor = int(args.get('id'))
+    id_pyme_asesor = int(pyme_asesor_id)
     pa = Pyme_Asesor.objects.get(id = id_pyme_asesor)
-    pa.fecha_contratacion = datetime.strptime(args.get('fecha_contratacion')
-        ) if 'fecha_contratacion' in args and args.get(
+    if 'id_pyme' in args and args.get('id_pyme') != "":
+        p = Pyme.objects.get(id = int(args.get('id_pyme')))
+        pa.id_pyme = p
+    
+    if 'id_asesor' in args and args.get('id_asesor') != "":
+        a = Asesor.objects.get(id = int(args.get('id_asesor')))
+        pa.id_asesor = a
+
+    pa.fecha_contratacion = datetime.strptime(args.get('fecha_contratacion'), "%Y-%m-%d"
+        ).date() if 'fecha_contratacion' in args and args.get(
             'fecha_contratacion') != "" else None 
     pa.departamento = args.get('departamento') if 'departamento' in args else None
     pa.modalidad_contratacion = args.get('modalidad_contratacion') if 'modalidad_contratacion' in args else None
