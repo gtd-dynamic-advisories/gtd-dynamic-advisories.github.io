@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,7 +7,8 @@ import Swal from 'sweetalert2';
   templateUrl: './app-asesor.component.html',
   styleUrl: './app-asesor.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  standalone: true
+  standalone: true,
+  imports: [MatTableModule],
 })
 export class AppAsesorComponent {
 
