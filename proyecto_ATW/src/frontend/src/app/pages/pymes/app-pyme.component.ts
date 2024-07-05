@@ -3,9 +3,9 @@ import { MatTableModule } from '@angular/material/table';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-app-pyme',
-  templateUrl: './app-app-pyme.html',
-  styleUrl: './app-app-pyme.scss',
+  selector: 'app-pyme',
+  templateUrl: './app-pyme.component.html',
+  styleUrl: './app-pyme.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   standalone: true,
   imports: [MatTableModule],
