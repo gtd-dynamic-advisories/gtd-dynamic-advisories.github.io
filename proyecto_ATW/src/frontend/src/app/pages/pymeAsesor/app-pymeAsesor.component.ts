@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   imports: [MatTableModule, MatButtonModule, MatIconModule],
 
 })
-export class ApppymeAsesorComponent {
+export class AppPymeAsesorComponent {
 
   displayedColumns = ['id_Pyme', 'id_asesor', 'fecha_Contratacion', 'departamento','m_contratacion', 'edit'];
   dataSource: any[];

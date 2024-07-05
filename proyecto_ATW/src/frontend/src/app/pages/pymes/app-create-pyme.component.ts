@@ -4,7 +4,7 @@ import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
-    templateUrl: "./app-create-asesor.component.html",
+    templateUrl: "./app-create-pyme.component.html",
     imports: [
         MatFormField,
         MatLabel,
@@ -13,7 +13,7 @@ import { MatInputModule } from "@angular/material/input";
     ],
     standalone: true
 })
-export class AppPymeComponent{
+export class AppCreatePymeComponent{
     id_pyme: number;
     nombre: string;
     rut: string;

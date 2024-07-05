@@ -1,19 +1,20 @@
-import { Component } from "@angular/core";
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
-    templateUrl: './app-pymeAsesor.component.html',
+    templateUrl: './app-create-pymeAsesor.component.html',
     imports: [
         MatFormField,
         MatLabel,
         MatHint,
         MatInputModule,
     ],
-    standalone: true
+    standalone: true,
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ApppymeAsesorComponent{
+export class AppCreatePymeAsesorComponent{
     pyme: number;
     asesor: number;
     fecha_contratacion: string;
