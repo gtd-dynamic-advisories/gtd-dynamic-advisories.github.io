@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-pyme',
   templateUrl: './app-pyme.component.html',
-  styleUrl: './app-pyme.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   standalone: true,
   imports: [MatTableModule, MatButtonModule, MatIconModule],

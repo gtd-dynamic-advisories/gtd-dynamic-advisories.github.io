@@ -32,14 +32,13 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
-    AppComponent,
     FullComponent,
     BlankComponent,
     SidebarComponent,
     HeaderComponent,
     BrandingComponent,
     AppNavItemComponent,
-  
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +51,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     TablerIconsModule.pick(TablerIcons),
     NgScrollbarModule,
     SweetAlert2Module.forRoot(),
+    
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],
