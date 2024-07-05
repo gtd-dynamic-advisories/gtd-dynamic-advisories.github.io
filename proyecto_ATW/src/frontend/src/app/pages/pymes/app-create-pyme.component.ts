@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { Router } from "@angular/router";
 
 @Component({
     templateUrl: "./app-create-pyme.component.html",
@@ -11,7 +12,12 @@ import { MatInputModule } from "@angular/material/input";
         MatHint,
         MatInputModule,
     ],
-    standalone: true
+    standalone: true,
+    styles: `
+    mat-form-field {
+        width: 50%;
+    }
+    `
 })
 export class AppCreatePymeComponent{
     readonly BUTTON_NAME = "Añadir Pyme";
@@ -21,7 +27,7 @@ export class AppCreatePymeComponent{
     telefono: string;
     correo: string;
 
-    constructor(){
+    constructor(private router: Router){
         this.nombre = "";
         this.rut ="";
         this.direccion ="";
@@ -69,7 +75,10 @@ export class AppCreatePymeComponent{
         );
 
         if (response.ok){
-            console.log("TAWENO");  
+            this.router.navigate([`/Pymes`]) 
+        }
+        else{
+            alert("No se ha podido crear la PYME")
         }
     }
 }

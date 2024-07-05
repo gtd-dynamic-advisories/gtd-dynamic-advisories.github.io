@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject, ViewChild } from "@angular/core";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     templateUrl: "./app-create-asesor.component.html",
@@ -11,7 +11,12 @@ import { ActivatedRoute } from "@angular/router";
         MatHint,
         MatInputModule,
     ],
-    standalone: true
+    standalone: true,
+    styles: `
+    mat-form-field {
+        width: 50%;
+    }
+    `
 })
 export class AppUpdateAsesor{
     readonly BUTTON_NAME = "Actualizar Asesor";
@@ -28,7 +33,7 @@ export class AppUpdateAsesor{
     @ViewChild('telefono') telefonoInput!: ElementRef;
     @ViewChild('correo') correoInput!: ElementRef;
 
-    constructor(){
+    constructor(private router: Router){
         const snapshot = this.activatedRoute.snapshot;
         if (!snapshot.params['id']){
             console.error("NO HAY ID");
@@ -41,11 +46,9 @@ export class AppUpdateAsesor{
             }
         )
         .then((response) => {
-            console.warn("AAAAAAA", response);
             
             response.json()
                 .then((d) => {
-                    console.warn("EEEEEEEEEE", d);
                     this.nombre = d['nombre'];
                     this.rut = d['rut'];
                     this.telefono = d['telefono'];
@@ -98,5 +101,12 @@ export class AppUpdateAsesor{
                 body: JSON.stringify(data)
             }
         );
+
+        if (response.ok){
+            this.router.navigate(["Asesors/"])
+        }
+        else{
+            alert("No se ha podido actualizar el Asesor")
+        }
     }
 }

@@ -17,7 +17,7 @@ export class AppAsesorComponent {
   displayedColumns = ['id', 'rut', 'nombre', 'telefono','correo', 'edit'];
   dataSource: any[];
 
-  constructor(){
+  constructor(private router: Router){
     this.dataSource = [];
     this.getAsesors();
   }
@@ -74,9 +74,8 @@ export class AppAsesorComponent {
     
   }
   
-  editAsesor(asesor: any){
-    
-    console.error("Method not implemented")
+  editAsesor(asesorId: any){
+    this.router.navigate([`Asesors/${asesorId}`]);
   }
 }
 

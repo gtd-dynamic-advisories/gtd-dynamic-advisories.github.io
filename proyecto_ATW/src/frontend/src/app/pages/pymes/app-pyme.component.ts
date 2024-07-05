@@ -17,7 +17,7 @@ export class AppPymeComponent {
   displayedColumns = ['id', 'rut', 'direccion','telefono','nombre','correo', 'edit'];
   dataSource: any[];
 
-  constructor(){
+  constructor(private router: Router){
     this.dataSource = [];
     this.getPyme();
   }
@@ -73,8 +73,7 @@ export class AppPymeComponent {
     
   }
   editPyme(pyme: any){
-  
-    console.error("Method not implemented")
+    this.router.navigate([`Pymes/${pyme}`])
   }
 }
 

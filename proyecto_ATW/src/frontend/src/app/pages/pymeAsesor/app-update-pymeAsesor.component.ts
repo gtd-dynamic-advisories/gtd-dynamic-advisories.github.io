@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, ViewChild } from "@angular/core";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     templateUrl: './app-create-pymeAsesor.component.html',
@@ -12,6 +12,11 @@ import { ActivatedRoute } from "@angular/router";
         MatInputModule,
     ],
     standalone: true,
+    styles: `
+    mat-form-field {
+        width: 50%;
+    }
+    `
 })
 export class AppUpdatePymeAsesorComponent{
     readonly BUTTON_NAME = "Actualizar Pyme";
@@ -30,7 +35,7 @@ export class AppUpdatePymeAsesorComponent{
     @ViewChild('departamento') departamentoInput!: ElementRef;
     @ViewChild('modalidadContratacion') modalidad_contratacionInput!: ElementRef;
 
-    constructor(){
+    constructor(private router: Router){
         const snapshot = this.activatedRoute.snapshot;
         if (!snapshot.params['id']){
             console.error("NO HAY ID");
@@ -43,11 +48,9 @@ export class AppUpdatePymeAsesorComponent{
             }
         )
         .then((response) => {
-            console.warn("AAAAAAA", response);
             
             response.json()
                 .then((d) => {
-                    console.warn("EEEEEEEEEE", d);
                     this.id_pyme = d['id_pyme'];
                     this.id_asesor = d['id_asesor'];
                     this.fecha_contratacion = (d['fecha_contratacion']);
@@ -105,5 +108,12 @@ export class AppUpdatePymeAsesorComponent{
                 body: JSON.stringify(data)
             }
         );
+
+        if(response.ok){
+            this.router.navigate([`Pyme_Asesors/`]);
+        }
+        else{
+            alert("No se ha podido actualizar el Trabajador")
+        }
     }
 }

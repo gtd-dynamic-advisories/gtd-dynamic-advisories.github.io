@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { Router } from "@angular/router";
 
 @Component({
     templateUrl: "./app-create-asesor.component.html",
@@ -11,7 +12,12 @@ import { MatInputModule } from "@angular/material/input";
         MatHint,
         MatInputModule,
     ],
-    standalone: true
+    standalone: true,
+    styles: `
+    mat-form-field {
+        width: 50%;
+    }
+    `
 })
 export class AppCreateAsesorComponent{
     readonly BUTTON_NAME = "Añadir Asesor";
@@ -20,7 +26,7 @@ export class AppCreateAsesorComponent{
     telefono: string;
     correo: string;
 
-    constructor(){
+    constructor(private router: Router){
         this.nombre = "";
         this.rut ="";
         this.telefono = "";
@@ -61,7 +67,10 @@ export class AppCreateAsesorComponent{
         );
 
         if (response.ok){
-            console.log("TAWENO");  
+            this.router.navigate(["Asesors/"])
+        }
+        else{
+            alert("No se ha podido crear el Asesor")
         }
     }
 }

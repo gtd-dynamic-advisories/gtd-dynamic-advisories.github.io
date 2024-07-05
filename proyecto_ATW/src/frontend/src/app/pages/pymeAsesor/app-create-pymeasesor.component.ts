@@ -1,6 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { Router } from "@angular/router";
 
 @Component({
     templateUrl: './app-create-pymeAsesor.component.html',
@@ -11,7 +12,12 @@ import { MatInputModule } from "@angular/material/input";
         MatInputModule,
     ],
     standalone: true,
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    styles: `
+    mat-form-field {
+        width: 50%;
+    }
+    `
 })
 export class AppCreatePymeAsesorComponent{
     readonly BUTTON_NAME = "Añadir Trabajador";
@@ -21,7 +27,7 @@ export class AppCreatePymeAsesorComponent{
     departamento: string;
     modalidad_de_contratacion: string;
 
-    constructor(){
+    constructor(private router: Router){
         this.pyme =  0;
         this.asesor = 0;
         this.fecha_contratacion = "";
@@ -70,7 +76,10 @@ export class AppCreatePymeAsesorComponent{
         );
 
         if (response.ok){
-            console.log("TAWENO");  
+            this.router.navigate(["Pyme_Asesors/"])
+        }
+        else{
+            alert("No se ha podido cear el Trabajador");
         }
     }
 }

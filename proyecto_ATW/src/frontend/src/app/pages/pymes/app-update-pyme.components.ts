@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject, ViewChild } from "@angular/core";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     templateUrl: "./app-create-pyme.component.html",
@@ -11,7 +11,12 @@ import { ActivatedRoute } from "@angular/router";
         MatHint,
         MatInputModule,
     ],
-    standalone: true
+    standalone: true,
+    styles: `
+    mat-form-field {
+        width: 50%;
+    }
+    `
 })
 export class AppUpdatePymeComponent{
     id: number = -1;
@@ -31,7 +36,7 @@ export class AppUpdatePymeComponent{
     @ViewChild('nombre') nombreInput!: ElementRef;
     @ViewChild('correo') correoInput!: ElementRef;
 
-    constructor(){
+    constructor(private router: Router){
         const snapshot = this.activatedRoute.snapshot;
         if (!snapshot.params['id']){
             console.error("NO HAY ID");
@@ -44,11 +49,9 @@ export class AppUpdatePymeComponent{
             }
         )
         .then((response) => {
-            console.warn("AAAAAAA", response);
             
             response.json()
                 .then((d) => {
-                    console.warn("EEEEEEEEEE", d);
                     this.rut = d['rut'];
                     this.direccion = d['direccion'];
                     this.telefono = d['telefono'];
@@ -110,5 +113,12 @@ export class AppUpdatePymeComponent{
                 body: JSON.stringify(data)
             }
         );
+
+        if (response.ok){
+            this.router.navigate([`/Pymes`]) 
+        }
+        else{
+            alert("No se ha podido actualizar la PYME")
+        }
     }
 }

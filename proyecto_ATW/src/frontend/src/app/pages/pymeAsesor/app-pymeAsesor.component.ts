@@ -18,7 +18,7 @@ export class AppPymeAsesorComponent {
   displayedColumns = ['id', 'id_Pyme', 'id_asesor', 'fecha_Contratacion', 'departamento','m_contratacion', 'edit'];
   dataSource: any[];
 
-  constructor(){
+  constructor(private router: Router){
     this.dataSource = [];
     this.getPymeAsesors();
   }
@@ -74,8 +74,7 @@ export class AppPymeAsesorComponent {
     });      
   }
   editPymeAsesor(pymeAsesor: any){
-  
-    console.error("Method not implemented")
+    this.router.navigate([`Pyme_Asesors/${pymeAsesor}`])
   }
 }
 
