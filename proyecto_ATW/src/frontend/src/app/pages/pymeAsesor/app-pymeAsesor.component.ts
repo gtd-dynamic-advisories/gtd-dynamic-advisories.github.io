@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class AppPymeAsesorComponent {
 
-  displayedColumns = ['id_Pyme', 'id_asesor', 'fecha_Contratacion', 'departamento','m_contratacion', 'edit'];
+  displayedColumns = ['id', 'id_Pyme', 'id_asesor', 'fecha_Contratacion', 'departamento','m_contratacion', 'edit'];
   dataSource: any[];
 
   constructor(){

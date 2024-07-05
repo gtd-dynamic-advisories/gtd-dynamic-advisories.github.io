@@ -5,14 +5,34 @@ export const navItems: NavItem[] = [
     navCap: 'Home',
   },
   {
-    displayName: 'Dashboard',
-    iconName: 'layout-dashboard',
-    route: '/dashboard',
+    displayName: 'Asesores',
+    iconName: 'user',
+    route: '/Asesors',
   },
   {
-    displayName: 'Saludo',
-    iconName: 'message',
-    route: '/greeting',
+    displayName: 'Crear Asesor',
+    iconName: 'user-plus',
+    route: '/Asesors/new',
+  },
+  {
+    displayName: 'PYMEs',
+    iconName: 'building-skyscraper',
+    route: '/Pymes',
+  },
+  {
+    displayName: 'Crear PYME',
+    iconName: 'home-plus',
+    route: '/Pymes/new',
+  },
+  {
+    displayName: 'Trabajadores',
+    iconName: 'phone',
+    route: '/Pyme_Asesors',
+  },
+  {
+    displayName: 'Nuevo Trabajador',
+    iconName: 'phone-plus',
+    route: '/Pyme_Asesors/new',
   },
 
 ];

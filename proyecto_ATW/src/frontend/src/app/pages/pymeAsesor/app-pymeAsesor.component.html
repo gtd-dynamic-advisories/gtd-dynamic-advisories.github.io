@@ -3,6 +3,12 @@
     <mat-table #table [dataSource]="dataSource">
    
       <!-- id_pyme Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <!-- id_pyme Column -->
       <ng-container matColumnDef="id_Pyme">
         <mat-header-cell *matHeaderCellDef> Pyme </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.id_pyme}} </mat-cell>

@@ -4,7 +4,7 @@ import { MatInputModule } from "@angular/material/input";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-    templateUrl: "./app-create-asesor.component.html",
+    templateUrl: "./app-create-pyme.component.html",
     imports: [
         MatFormField,
         MatLabel,
@@ -13,13 +13,15 @@ import { ActivatedRoute } from "@angular/router";
     ],
     standalone: true
 })
-export class AppUpdatePyme{
+export class AppUpdatePymeComponent{
     id: number = -1;
     rut: string = "";
     direccion: string = "";
     telefono: string = "";
     nombre: string = "";
     correo: string = "";
+
+    readonly BUTTON_NAME = "Actualizar Trabajador"
     
     private activatedRoute = inject(ActivatedRoute);
 
@@ -89,7 +91,7 @@ export class AppUpdatePyme{
         this.correo = event.target.value
     }
 
-    async createAsesor(){
+    async createPyme(){
         let data  = {
             rut: this.rut,
             direccion: this.direccion,

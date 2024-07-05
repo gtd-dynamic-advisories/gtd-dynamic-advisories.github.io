@@ -1,5 +1,4 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { FormControl } from "@angular/forms";
 import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
@@ -30,29 +29,32 @@ export class AppCreatePymeAsesorComponent{
     }
 
     updatePyme(event: any){
-        this.pyme = event.target.value
+        this.pyme = Number.parseInt(event.target.value) 
     }
 
     updateAsesor(event: any){
-        this.asesor = event.target.value
+        this.asesor = Number.parseInt(event.target.value)
     }
+
     updateFechaContratacion(event: any){
         this.fecha_contratacion = event.target.value
     }
+
     updateDepartamento(event: any){
         this.departamento = event.target.value
     }
+    
     updateModalidadContratacion(event: any){
         this.modalidad_de_contratacion = event.target.value
     }
 
     async createPymeAsesor(){
         let data  = {
-            pyme: this.pyme,
-            asesor: this.asesor,
+            id_pyme: this.pyme,
+            id_asesor: this.asesor,
             fecha_contratacion: this.fecha_contratacion,
             departamento: this.departamento, 
-            modalidad_de_contratacion: this.modalidad_de_contratacion, 
+            modalidad_contratacion: this.modalidad_de_contratacion, 
         }
         
 
@@ -70,10 +72,4 @@ export class AppCreatePymeAsesorComponent{
             console.log("TAWENO");  
         }
     }
-
-
-    logs(){
-        console.log(this.pyme,this.asesor,this.fecha_contratacion,this.departamento,this.modalidad_de_contratacion);
-    }
-
 }
